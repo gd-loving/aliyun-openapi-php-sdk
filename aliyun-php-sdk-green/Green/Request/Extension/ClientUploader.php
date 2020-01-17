@@ -88,9 +88,9 @@ class ClientUploader
         }
         try {
             $ossClient = new OssClient($uploadCredentials->getAccessKeyId(), $uploadCredentials->getAccessKeySecret(), $uploadCredentials->getOssEndpoint(), false, $uploadCredentials->getSecurityToken());
-            print_r($uploadCredentials->getUploadFolder().$this->fileType );
+            //print_r($uploadCredentials->getUploadFolder().$this->fileType );
             $object = $uploadCredentials->getUploadFolder().'/'.$this->fileType .'/'.uniqid();
-            print_r($object);
+            //print_r($object);
             $ossClient->uploadFile($uploadCredentials->getUploadBucket(), $object, $filePath);
             return "oss://".$uploadCredentials->getUploadBucket(). "/".$object;
         } catch (OssException $e) {
@@ -127,7 +127,7 @@ class ClientUploader
 
         try {
             $response = $this->client->getAcsResponse($uploadCredentialsRequest);
-            print_r($response);
+            //print_r($response);
             if (200 == $response->code) {
                 $data = $response->data;
                 return new UploadCredentials($data->accessKeyId,
